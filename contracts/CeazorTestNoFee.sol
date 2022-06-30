@@ -2200,7 +2200,7 @@ pragma solidity ^0.8.0;
  *
  * Expect the amount of LP tokens you have to grow over time while you have assets deposit
  */
-contract CeazorAutoCompoundBeethoven_fBEETS is Ownable, Pausable {
+contract CeazorTestNoFee is Ownable, Pausable {
     using SafeERC20 for IERC20;
     using Address for address;
     using SafeMath for uint256;
@@ -2436,7 +2436,7 @@ contract CeazorAutoCompoundBeethoven_fBEETS is Ownable, Pausable {
      */
     function _chargeFees(bool _remitStrategist) internal {
         uint256 rewardBal = IERC20(rewardToken).balanceOf(address(this));
-        // uint256 wftmBal = IERC20(wftm).balanceOf(address(this));
+        uint256 wftmBal = IERC20(wftm).balanceOf(address(this));
 
         uint256 fees;
         uint256 callFees;
@@ -2448,6 +2448,8 @@ contract CeazorAutoCompoundBeethoven_fBEETS is Ownable, Pausable {
         callFees = IERC20(rewardToken).balanceOf(address(this)).sub(rewardBal);
 
         uint256 callFeeToUser = callFees.mul(callFee).div(PERCENT_DIVISOR);
+        _swap(callFeeToUser, wftm, wftmRoute_ID, fees);       // Ceazor moved swap to here to only swap for callFee 
+
         IERC20(wftm).safeTransfer(msg.sender, callFeeToUser);
 
 
