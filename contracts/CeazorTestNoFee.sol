@@ -2448,7 +2448,7 @@ contract CeazorTestNoFee is Ownable, Pausable {
         callFees = IERC20(rewardToken).balanceOf(address(this)).sub(rewardBal);
 
         uint256 callFeeToUser = callFees.mul(callFee).div(PERCENT_DIVISOR);
-        _swap(callFeeToUser, wftm, wftmRoute_ID, fees);       // Ceazor moved swap to here to only swap for callFee 
+        _swap(rewardToken, wftm, wftmRoute_ID, callFees);       // Ceazor moved swap to here to only swap for callFee, see amount change
 
         IERC20(wftm).safeTransfer(msg.sender, callFeeToUser);
 
