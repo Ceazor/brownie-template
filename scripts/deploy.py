@@ -55,4 +55,23 @@ def main():
     if input("Deploy Strategy? y/[N]: ").lower() != "y":
         return
 
-    strategy = Strategy.deploy(vault, {"from": dev}, publish_source=publish_source)
+
+
+
+ceazor = ("0x3c5Aac016EF2F178e8699D6208796A2D67557fe2")
+_lpToken = ("0xfcef8a994209d6916EB2C86cDD2AFD60Aa6F54b1") 
+_poolId = 22
+_vault = ("0x58e0ac1973f9d182058e6b63e7f4979bc333f493")
+_treasury = "ceazor"
+_strategistRemitter = "ceazor"
+
+
+
+strategy = Strategy.deploy(vault, {"from": dev}, publish_source=publish_source)
+
+
+brownie console --network ftm-main-fork
+vault = ("0x58e0ac1973f9d182058e6b63e7f4979bc333f493")
+owner = ("0x699675204aFD7Ac2BB146d60e4E3Ddc243843519")
+
+strategy = NoSellFee.deploy(vault, {"from": owner}, publish_source=publish_source)
