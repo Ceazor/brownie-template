@@ -7,7 +7,8 @@ owner = ("0x699675204aFD7Ac2BB146d60e4E3Ddc243843519")
 hotwallet = ("0xA67D2c03c3cfe6177a60cAed0a4cfDA7C7a563e0")
 ceazor = ("0x3c5Aac016EF2F178e8699D6208796A2D67557fe2")
 lptoken = Contract("0xfcef8a994209d6916EB2C86cDD2AFD60Aa6F54b1")
-CeazorTestNoFee = Contract("0xBDa00731a379d642263dAbC1ff9C7E08Fc4FE633")
+CeazorTestNoFee = Contract("0xbda00731a379d642263dabc1ff9c7e08fc4fe633")
 
 
-CeazorTestNoFee.deploy(lptoken, 22, ceazfBEETs,ceazor,ceazor, {'from': owner}, publish_source=True)
+NoSellFee.deploy(fbeets, 22, ceazfBEETs,ceazor,ceazor, {'from': owner})
+NoSellFee = Contract("0x4BAE1558200f9371330398f487c49A913B6BCc8e")
